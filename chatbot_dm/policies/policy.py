@@ -1,17 +1,32 @@
+# -*- coding: utf-8 -*-
+
+'''
+@Author  :   Xu
+
+@Software:   PyCharm
+
+@File    :   policy.py
+
+@Time    :   2019-10-02 10:04
+
+@Desc    :   对话策略训练,其他自定义policy均继承该类
+
+'''
+
 import copy
 import logging
 import tensorflow as tf
 from typing import Any, List, Optional, Text, Dict, Callable
 
-import rasa.utils.common
-from rasa.core.domain import Domain
-from rasa.core.featurizers import (
+from chatbot_dm.utils import common
+from chatbot_dm.domain import Domain
+from chatbot_dm.featurizers import (
     MaxHistoryTrackerFeaturizer,
     BinarySingleStateFeaturizer,
 )
-from rasa.core.featurizers import TrackerFeaturizer
-from rasa.core.trackers import DialogueStateTracker
-from rasa.core.training.data import DialogueTrainingData
+from chatbot_dm.featurizers import TrackerFeaturizer
+from chatbot_dm.trackers import DialogueStateTracker
+from chatbot_dm.training.data import DialogueTrainingData
 
 
 logger = logging.getLogger(__name__)
@@ -54,7 +69,7 @@ class Policy(object):
     @staticmethod
     def _get_valid_params(func: Callable, **kwargs: Any) -> Dict:
         # filter out kwargs that cannot be passed to func
-        valid_keys = rasa.utils.common.arguments_of(func)
+        valid_keys = common.arguments_of(func)
 
         params = {key: kwargs.get(key) for key in valid_keys if kwargs.get(key)}
         ignored_params = {
