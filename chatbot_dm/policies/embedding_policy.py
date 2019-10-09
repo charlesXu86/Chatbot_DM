@@ -1,3 +1,18 @@
+# -*- coding: utf-8 -*-
+
+'''
+@Author  :   Xu
+
+@Software:   PyCharm
+
+@File    :   embedding_policy.py
+
+@Time    :   2019-10-02 10:04
+
+@Desc    :
+
+'''
+
 from collections import namedtuple
 import copy
 import json
@@ -10,27 +25,27 @@ import typing
 from tqdm import tqdm
 from typing import Any, List, Optional, Text, Dict, Tuple, Union
 
-import rasa.utils.io
-from rasa.core import utils
-from rasa.core.actions.action import ACTION_LISTEN_NAME
-from rasa.core.domain import Domain
-from rasa.core.featurizers import (
+from chatbot_dm.utils import io
+from chatbot_dm import util
+from chatbot_dm.actions.action import ACTION_LISTEN_NAME
+from chatbot_dm.domain import Domain
+from chatbot_dm.featurizers import (
     TrackerFeaturizer,
     FullDialogueTrackerFeaturizer,
     LabelTokenizerSingleStateFeaturizer,
 )
-from rasa.core.policies.policy import Policy
+from chatbot_dm.policies.policy import Policy
 
 import tensorflow as tf
-from rasa.core.policies.tf_utils import (
+from chatbot_dm.policies.tf_utils import (
     TimeAttentionWrapper,
     ChronoBiasLayerNormBasicLSTMCell,
 )
-from rasa.core.trackers import DialogueStateTracker
-from rasa.utils.common import is_logging_disabled
+from chatbot_dm.trackers import DialogueStateTracker
+from chatbot_dm.utils.common import is_logging_disabled
 
 if typing.TYPE_CHECKING:
-    from rasa.core.policies.tf_utils import TimeAttentionWrapperState
+    from chatbot_dm.policies.tf_utils import TimeAttentionWrapperState
 
 import pickle
 
@@ -1401,11 +1416,11 @@ class EmbeddingPolicy(Policy):
         meta = {"priority": self.priority}
 
         meta_file = os.path.join(path, "embedding_policy.json")
-        utils.dump_obj_as_json_to_file(meta_file, meta)
+        util.dump_obj_as_json_to_file(meta_file, meta)
 
         file_name = "tensorflow_embedding.ckpt"
         checkpoint = os.path.join(path, file_name)
-        rasa.utils.io.create_directory_for_file(checkpoint)
+        io.create_directory_for_file(checkpoint)
 
         with self.graph.as_default():
             self._persist_tensor("intent_placeholder", self.a_in)
@@ -1471,7 +1486,7 @@ class EmbeddingPolicy(Policy):
             return cls(featurizer=featurizer)
 
         meta_file = os.path.join(path, "embedding_policy.json")
-        meta = json.loads(rasa.utils.io.read_file(meta_file))
+        meta = json.loads(io.read_file(meta_file))
 
         tf_config_file = os.path.join(path, "{}.tf_config.pkl".format(file_name))
 
