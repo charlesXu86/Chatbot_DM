@@ -186,7 +186,7 @@ async def _pull_model_and_fingerprint(
                     return None
 
                 model_directory = tempfile.mkdtemp()
-                rasa.utils.io.unarchive(await resp.read(), model_directory)
+                chatbot_dm.utils.io.unarchive(await resp.read(), model_directory)
                 logger.debug(
                     "Unzipped model to '{}'".format(os.path.abspath(model_directory))
                 )
