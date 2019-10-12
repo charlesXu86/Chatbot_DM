@@ -1,3 +1,18 @@
+# -*- coding: utf-8 -*-
+
+'''
+@Author  :   Xu
+
+@Software:   PyCharm
+
+@File    :   agent.py
+
+@Time    :   2019-09-30 10:04
+
+@Desc    :  创建对话agent
+
+'''
+
 import logging
 import os
 import shutil
@@ -9,19 +24,19 @@ from typing import Any, Callable, Dict, List, Optional, Text, Tuple, Union
 
 import aiohttp
 
-import rasa
-import rasa.utils.io
+import chatbot_dm
+import chatbot_dm.utils.io
 from rasa.constants import DEFAULT_DOMAIN_PATH, LEGACY_DOCS_BASE_URL
 from rasa.core import constants, jobs, training
-from rasa.core.channels.channel import (
+from chatbot_dm.channels.channel import (
     InputChannel,
     OutputChannel,
     UserMessage,
     CollectingOutputChannel,
 )
-from rasa.core.constants import DEFAULT_REQUEST_TIMEOUT
-from rasa.core.domain import Domain, InvalidDomain
-from rasa.core.exceptions import AgentNotReady
+from chatbot_dm.constants import DEFAULT_REQUEST_TIMEOUT
+from chatbot_dm.domain import Domain, InvalidDomain
+from chatbot_dm.exceptions import AgentNotReady
 from rasa.core.interpreter import NaturalLanguageInterpreter, RegexInterpreter
 from rasa.core.nlg import NaturalLanguageGenerator
 from rasa.core.policies.policy import Policy
@@ -403,7 +418,10 @@ class Agent(object):
     async def parse_message_using_nlu_interpreter(
         self, message_data: Text
     ) -> Dict[Text, Any]:
-        """Handles message text and intent payload input messages.
+        """
+        解析数据
+
+        Handles message text and intent payload input messages.
 
         The return value of this function is parsed_data.
 
