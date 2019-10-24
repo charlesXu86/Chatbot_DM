@@ -22,10 +22,9 @@ import tensorflow as tf
 import warnings
 import pickle
 
-from rasa.core.policies.keras_policy import KerasPolicy
-import rasa.utils.io
-from rasa.core import utils
-from rasa.core.featurizers import TrackerFeaturizer
+from chatbot_dm.policies.keras_policy import KerasPolicy
+import chatbot_dm.utils.io
+from chatbot_dm.featurizers import TrackerFeaturizer
 
 from .attention_keras import Attention, Position_Embedding
 
@@ -33,7 +32,7 @@ logger = logging.getLogger(__name__)
 
 class AttentionPolicy(KerasPolicy):
     def model_architecture(self, input_shape, output_shape):
-        from keras.models import Model, load_model
+        from keras.models import Model
         from keras.layers import Input, GlobalAveragePooling1D, Dropout, Dense
 
         S_inputs = Input(shape=input_shape)
@@ -68,7 +67,7 @@ class AttentionPolicy(KerasPolicy):
             featurizer = TrackerFeaturizer.load(path)
             meta_file = os.path.join(path, "keras_policy.json")
             if os.path.isfile(meta_file):
-                meta = json.loads(rasa.utils.io.read_file(meta_file))
+                meta = json.loads(chatbot_dm.utils.io.read_file(meta_file))
 
                 tf_config_file = os.path.join(path, "keras_policy.tf_config.pkl")
                 with open(tf_config_file, "rb") as f:
