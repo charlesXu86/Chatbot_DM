@@ -23,12 +23,12 @@ from typing import Any, Dict, List, Optional, Text, Tuple, Union, Set
 import rasa.utils.io
 from rasa.cli.utils import bcolors
 from rasa.constants import DOMAIN_SCHEMA_FILE
-from rasa.core import utils
-from rasa.core.actions import action  # pytype: disable=pyi-error
-from rasa.core.actions.action import Action  # pytype: disable=pyi-error
-from rasa.core.constants import REQUESTED_SLOT
-from rasa.core.events import SlotSet, UserUttered
-from rasa.core.slots import Slot, UnfeaturizedSlot
+from chatbot_dm import utils
+from chatbot_dm.actions import action  # pytype: disable=pyi-error
+from chatbot_dm.actions.action import Action  # pytype: disable=pyi-error
+from chatbot_dm.constants import REQUESTED_SLOT
+from chatbot_dm.events import SlotSet, UserUttered
+from chatbot_dm.slots import Slot, UnfeaturizedSlot
 from rasa.utils.endpoints import EndpointConfig
 from rasa.utils.validation import validate_yaml_schema, InvalidYamlFileError
 
@@ -38,7 +38,7 @@ PREV_PREFIX = "prev_"
 ACTIVE_FORM_PREFIX = "active_form_"
 
 if typing.TYPE_CHECKING:
-    from rasa.core.trackers import DialogueStateTracker
+    from chatbot_dm.trackers import DialogueStateTracker
 
 
 class InvalidDomain(Exception):
@@ -665,7 +665,7 @@ class Domain(object):
                 del slot["initial_value"]
             if slot["auto_fill"]:
                 del slot["auto_fill"]
-            if slot["type"].startswith("rasa.core.slots"):
+            if slot["type"].startswith("chatbot_dm.slots"):
                 slot["type"] = Slot.resolve_by_type(slot["type"]).type_name
 
         if domain_data["config"]["store_entities_as_slots"]:
@@ -716,7 +716,7 @@ class Domain(object):
         Includes user and form actions, but excludes those that are default actions.
         """
 
-        from rasa.core.actions.action import (  # pytype: disable=pyi-error
+        from chatbot_dm.actions.action import (  # pytype: disable=pyi-error
             default_action_names,
         )
 

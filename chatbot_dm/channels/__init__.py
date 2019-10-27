@@ -1,6 +1,6 @@
 from typing import Text, Dict, List
 
-from rasa.core.channels.channel import (
+from chatbot_dm.channels.channel import (
     InputChannel,
     OutputChannel,
     UserMessage,
@@ -10,21 +10,21 @@ from rasa.core.channels.channel import (
 
 # this prevents IDE's from optimizing the imports - we need to import the
 # above first, otherwise we will run into import cycles
-from rasa.core.channels.socketio import SocketIOInput
+from chatbot_dm.channels.socketio import SocketIOInput
 
 pass
 
-from rasa.core.channels.botframework import BotFrameworkInput  # nopep8
-from rasa.core.channels.callback import CallbackInput  # nopep8
-from rasa.core.channels.console import CmdlineInput  # nopep8
-from rasa.core.channels.facebook import FacebookInput  # nopep8
-from rasa.core.channels.mattermost import MattermostInput  # nopep8
-from rasa.core.channels.rasa_chat import RasaChatInput  # nopep8
-from rasa.core.channels.rocketchat import RocketChatInput  # nopep8
-from rasa.core.channels.slack import SlackInput  # nopep8
-from rasa.core.channels.telegram import TelegramInput  # nopep8
-from rasa.core.channels.twilio import TwilioInput  # nopep8
-from rasa.core.channels.webexteams import WebexTeamsInput  # nopep8
+from chatbot_dm.channels.botframework import BotFrameworkInput  # nopep8
+from chatbot_dm.channels.callback import CallbackInput  # nopep8
+from chatbot_dm.channels.console import CmdlineInput  # nopep8
+from chatbot_dm.channels.facebook import FacebookInput  # nopep8
+from chatbot_dm.channels.mattermost import MattermostInput  # nopep8
+from chatbot_dm.channels.rasa_chat import RasaChatInput  # nopep8
+from chatbot_dm.channels.rocketchat import RocketChatInput  # nopep8
+from chatbot_dm.channels.slack import SlackInput  # nopep8
+from chatbot_dm.channels.telegram import TelegramInput  # nopep8
+from chatbot_dm.channels.twilio import TwilioInput  # nopep8
+from chatbot_dm.channels.webexteams import WebexTeamsInput  # nopep8
 
 input_channel_classes = [
     CmdlineInput,

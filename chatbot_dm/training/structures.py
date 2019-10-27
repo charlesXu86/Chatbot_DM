@@ -5,11 +5,11 @@ import uuid
 from collections import deque, defaultdict
 from typing import List, Text, Dict, Optional, Tuple, Any, Set, ValuesView
 
-from rasa.core import utils
-from rasa.core.actions.action import ACTION_LISTEN_NAME
-from rasa.core.conversation import Dialogue
-from rasa.core.domain import Domain
-from rasa.core.events import (
+from chatbot_dm import util
+from chatbot_dm.actions.action import ACTION_LISTEN_NAME
+from chatbot_dm.conversation import Dialogue
+from chatbot_dm.domain import Domain
+from chatbot_dm.events import (
     UserUttered,
     ActionExecuted,
     Form,
@@ -464,7 +464,7 @@ class StoryGraph(object):
             # changing all of them.
 
             for s, e in cyclic_edge_ids:
-                cid = utils.generate_id(max_chars=GENERATED_HASH_LENGTH)
+                cid = util.generate_id(max_chars=GENERATED_HASH_LENGTH)
                 prefix = GENERATED_CHECKPOINT_PREFIX + CHECKPOINT_CYCLE_PREFIX
                 # need abbreviations otherwise they are not visualized well
                 sink_cp_name = prefix + "SINK_" + cid
@@ -703,7 +703,7 @@ class StoryGraph(object):
 
     def visualize(self, output_file=None):
         import networkx as nx
-        from rasa.core.training import visualization  # pytype: disable=pyi-error
+        from chatbot_dm.training import visualization  # pytype: disable=pyi-error
         from colorhash import ColorHash
 
         graph = nx.MultiDiGraph()
@@ -720,12 +720,12 @@ class StoryGraph(object):
                     color = ColorHash(cp.name[-GENERATED_HASH_LENGTH:]).hex
                     graph.add_node(
                         next_node_idx[0],
-                        label=utils.cap_length(cp.name),
+                        label=util.cap_length(cp.name),
                         style="filled",
                         fillcolor=color,
                     )
                 else:
-                    graph.add_node(next_node_idx[0], label=utils.cap_length(cp.name))
+                    graph.add_node(next_node_idx[0], label=util.cap_length(cp.name))
 
         graph.add_node(
             nodes["STORY_START"], label="START", fillcolor="green", style="filled"
@@ -738,7 +738,7 @@ class StoryGraph(object):
 
             graph.add_node(
                 next_node_idx[0],
-                label=utils.cap_length(step.block_name),
+                label=util.cap_length(step.block_name),
                 style="filled",
                 fillcolor="lightblue",
                 shape="rect",

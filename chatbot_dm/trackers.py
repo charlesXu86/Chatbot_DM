@@ -9,7 +9,13 @@
 
 @Time    :   2019-09-30 10:04
 
-@Desc    :
+@Desc    :   对话状态跟踪
+
+             1、是什么？如何初始化
+             2、输入是什么
+             3、跟踪了什么内容
+             4、如何更新状态
+             5、状态如何表达
 
 '''
 
@@ -19,9 +25,9 @@ from collections import deque
 from enum import Enum
 from typing import Dict, Text, Any, Optional, Iterator, Generator, Type, List
 
-from rasa.core import events  # pytype: disable=pyi-error
-from rasa.core.actions.action import ACTION_LISTEN_NAME  # pytype: disable=pyi-error
-from rasa.core.conversation import Dialogue  # pytype: disable=pyi-error
+from chatbot_dm import events  # pytype: disable=pyi-error
+from chatbot_dm.actions.action import ACTION_LISTEN_NAME  # pytype: disable=pyi-error
+from chatbot_dm.conversation import Dialogue  # pytype: disable=pyi-error
 from chatbot_dm.events import (  # pytype: disable=pyi-error
     UserUttered,
     ActionExecuted,
@@ -33,8 +39,8 @@ from chatbot_dm.events import (  # pytype: disable=pyi-error
     BotUttered,
     Form,
 )
-from rasa.core.domain import Domain  # pytype: disable=pyi-error
-from rasa.core.slots import Slot
+from chatbot_dm.domain import Domain  # pytype: disable=pyi-error
+from chatbot_dm.slots import Slot
 
 logger = logging.getLogger(__name__)
 
@@ -110,7 +116,7 @@ class DialogueStateTracker(object):
         return tracker
 
     def __init__(self, sender_id, slots, max_event_history=None):
-        """Initialize the tracker.
+        """初始化对话状态
 
         A set of events can be stored externally, and we will run through all
         of them to get the current state. The tracker will represent all the
@@ -119,6 +125,7 @@ class DialogueStateTracker(object):
         # maximum number of events to store
         self._max_event_history = max_event_history
         # list of previously seen events
+        # 历史事件列表
         self.events = self._create_events([])
         # id of the source of the messages
         self.sender_id = sender_id
@@ -166,6 +173,7 @@ class DialogueStateTracker(object):
         if len(self.events) > 0:
             latest_event_time = self.events[-1].timestamp
 
+        # Tracker保存的内容
         return {
             "sender_id": self.sender_id,
             "slots": self.current_slot_values(),
@@ -433,7 +441,12 @@ class DialogueStateTracker(object):
         return Dialogue(self.sender_id, list(self.events))
 
     def update(self, event: Event, domain: Optional[Domain] = None) -> None:
-        """Modify the state of the tracker according to an ``Event``. """
+        '''
+        更新状态
+        :param event:
+        :param domain:
+        :return:
+        '''
         if not isinstance(event, Event):  # pragma: no cover
             raise ValueError("event to log must be an instance of a subclass of Event.")
 
@@ -449,7 +462,7 @@ class DialogueStateTracker(object):
         """Dump the tracker as a story in the Rasa Core story format.
 
         Returns the dumped tracker as a string."""
-        from rasa.core.training.structures import Story
+        from chatbot_dm.training.structures import Story
 
         story = Story.from_events(self.applied_events(), self.sender_id)
         return story.as_story_string(flat=True, e2e=e2e)

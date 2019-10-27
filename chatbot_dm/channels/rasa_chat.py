@@ -4,8 +4,8 @@ import aiohttp
 import logging
 from sanic.exceptions import abort
 
-from rasa.core.channels.channel import RestInput
-from rasa.core.constants import DEFAULT_REQUEST_TIMEOUT
+from chatbot_dm.channels.channel import RestInput
+from chatbot_dm.constants import DEFAULT_REQUEST_TIMEOUT
 from sanic.request import Request
 
 logger = logging.getLogger(__name__)

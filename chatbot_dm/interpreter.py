@@ -1,3 +1,18 @@
+# -*- coding: utf-8 -*-
+
+'''
+@Author  :   Xu
+
+@Software:   PyCharm
+
+@File    :   interpreter.py
+
+@Time    :   2019-09-30 10:04
+
+@Desc    :  解释器
+
+'''
+
 import aiohttp
 
 import json
@@ -7,9 +22,9 @@ import re
 import os
 from typing import Text, List, Dict, Any, Union, Optional, Tuple
 
-from rasa.core import constants
-from rasa.core.constants import INTENT_MESSAGE_PREFIX
-from rasa.utils.endpoints import EndpointConfig
+from chatbot_dm import constants
+from chatbot_dm.constants import INTENT_MESSAGE_PREFIX
+from chatbot_dm.utils.endpoints import EndpointConfig
 
 logger = logging.getLogger(__name__)
 

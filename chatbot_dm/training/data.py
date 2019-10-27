@@ -1,3 +1,18 @@
+# -*- coding: utf-8 -*-
+
+'''
+@Author  :   Xu
+
+@Software:   PyCharm
+
+@File    :   data.py
+
+@Time    :   2019-10-02 10:04
+
+@Desc    :   处理对话训练数据
+
+'''
+
 # noinspection PyPep8Naming
 class DialogueTrainingData(object):
     def __init__(self, X, y, true_length=None):

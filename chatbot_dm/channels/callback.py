@@ -2,7 +2,7 @@ import logging
 from sanic import Blueprint, response
 from sanic.request import Request
 
-from rasa.core.channels.channel import CollectingOutputChannel, UserMessage, RestInput
+from chatbot_dm.channels.channel import CollectingOutputChannel, UserMessage, RestInput
 from rasa.utils.endpoints import EndpointConfig, ClientResponseError
 
 logger = logging.getLogger(__name__)

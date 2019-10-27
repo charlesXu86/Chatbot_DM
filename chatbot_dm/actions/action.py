@@ -6,15 +6,15 @@ from typing import List, Text, Optional, Dict, Any
 
 import aiohttp
 
-import rasa.core
+import chatbot_dm
 from rasa.constants import DOCS_BASE_URL
-from rasa.core import events
-from rasa.core.constants import (
+from chatbot_dm import events
+from chatbot_dm.constants import (
     DEFAULT_REQUEST_TIMEOUT,
     REQUESTED_SLOT,
     USER_INTENT_OUT_OF_SCOPE,
 )
-from rasa.core.events import (
+from chatbot_dm.events import (
     UserUtteranceReverted,
     UserUttered,
     ActionExecuted,
@@ -24,10 +24,10 @@ from rasa.core.events import (
 from rasa.utils.endpoints import EndpointConfig, ClientResponseError
 
 if typing.TYPE_CHECKING:
-    from rasa.core.trackers import DialogueStateTracker
-    from rasa.core.domain import Domain
-    from rasa.core.nlg import NaturalLanguageGenerator
-    from rasa.core.channels.channel import OutputChannel
+    from chatbot_dm.trackers import DialogueStateTracker
+    from chatbot_dm.domain import Domain
+    from chatbot_dm.nlg import NaturalLanguageGenerator
+    from chatbot_dm.channels.channel import OutputChannel
 
 logger = logging.getLogger(__name__)
 
@@ -302,7 +302,7 @@ class RemoteAction(Action):
             "sender_id": tracker.sender_id,
             "tracker": tracker_state,
             "domain": domain.as_dict(),
-            "version": rasa.__version__,
+            "version": chatbot_dm.__version__,
         }
 
     @staticmethod

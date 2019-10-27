@@ -4,12 +4,12 @@ import random
 import re
 from typing import Any, Text, List, Dict, Optional, TYPE_CHECKING
 
-from rasa.core.actions.action import ACTION_LISTEN_NAME
-from rasa.core.domain import Domain
-from rasa.core.events import UserUttered, ActionExecuted, Event
-from rasa.core.interpreter import RegexInterpreter, NaturalLanguageInterpreter
-from rasa.core.training.generator import TrainingDataGenerator
-from rasa.core.training.structures import StoryGraph, StoryStep
+from chatbot_dm.actions.action import ACTION_LISTEN_NAME
+from chatbot_dm.domain import Domain
+from chatbot_dm.events import UserUttered, ActionExecuted, Event
+from chatbot_dm.interpreter import RegexInterpreter, NaturalLanguageInterpreter
+from chatbot_dm.training.generator import TrainingDataGenerator
+from chatbot_dm.training.structures import StoryGraph, StoryStep
 
 if TYPE_CHECKING:
     from rasa.nlu.training_data import TrainingData, Message

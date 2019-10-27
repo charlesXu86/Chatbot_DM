@@ -8,11 +8,11 @@ from async_generator import async_generator, yield_
 from prompt_toolkit.styles import Style
 
 import rasa.cli.utils
-from rasa.core import utils
-from rasa.core.channels.channel import UserMessage
-from rasa.core.channels.channel import RestInput, button_to_string, element_to_string
-from rasa.core.constants import DEFAULT_SERVER_URL
-from rasa.core.interpreter import INTENT_MESSAGE_PREFIX
+from chatbot_dm import utils
+from chatbot_dm.channels.channel import UserMessage
+from chatbot_dm.channels.channel import RestInput, button_to_string, element_to_string
+from chatbot_dm.constants import DEFAULT_SERVER_URL
+from chatbot_dm.interpreter import INTENT_MESSAGE_PREFIX
 
 logger = logging.getLogger(__name__)
 

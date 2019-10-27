@@ -23,7 +23,7 @@ from sanic import Sanic, Blueprint, response
 from sanic.request import Request
 from typing import Text, List, Dict, Any, Optional, Callable, Iterable, Awaitable
 
-import rasa.utils.endpoints
+import chatbot_dm.utils.endpoints
 from rasa.constants import DOCS_BASE_URL
 from rasa.core import utils
 

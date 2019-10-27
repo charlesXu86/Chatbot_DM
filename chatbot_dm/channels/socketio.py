@@ -5,8 +5,8 @@ from sanic.request import Request
 from socketio import AsyncServer
 from typing import Optional, Text, Any, List, Dict, Iterable
 
-from rasa.core.channels.channel import InputChannel
-from rasa.core.channels.channel import UserMessage, OutputChannel
+from chatbot_dm.channels.channel import InputChannel
+from chatbot_dm.channels.channel import UserMessage, OutputChannel
 
 logger = logging.getLogger(__name__)
 

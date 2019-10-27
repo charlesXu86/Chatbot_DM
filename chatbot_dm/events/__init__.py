@@ -8,10 +8,10 @@ import uuid
 from dateutil import parser
 from typing import List, Dict, Text, Any, Type, Optional
 
-from rasa.core import utils
+from chatbot_dm import util
 
 if typing.TYPE_CHECKING:
-    from rasa.core.trackers import DialogueStateTracker
+    from chatbot_dm.trackers import DialogueStateTracker
 
 logger = logging.getLogger(__name__)
 
@@ -324,8 +324,8 @@ class BotUttered(Event):
             return {}
 
     def __members(self):
-        data_no_nones = utils.remove_none_values(self.data)
-        meta_no_nones = utils.remove_none_values(self.metadata)
+        data_no_nones = util.remove_none_values(self.data)
+        meta_no_nones = util.remove_none_values(self.metadata)
         return (
             self.text,
             jsonpickle.encode(data_no_nones),

@@ -24,18 +24,18 @@ import time
 
 from chatbot_dm import jobs
 from chatbot_dm.actions.action import Action
-from rasa.core.actions.action import (
+from chatbot_dm.actions.action import (
     ACTION_LISTEN_NAME,
     ActionExecutionRejection,
     UTTER_PREFIX,
 )
-from rasa.core.channels.channel import (
+from chatbot_dm.channels.channel import (
     CollectingOutputChannel,
     UserMessage,
     OutputChannel,
 )
-from rasa.core.constants import ACTION_NAME_SENDER_ID_CONNECTOR_STR, USER_INTENT_RESTART
-from rasa.core.domain import Domain
+from chatbot_dm.constants import ACTION_NAME_SENDER_ID_CONNECTOR_STR, USER_INTENT_RESTART
+from chatbot_dm.domain import Domain
 from chatbot_dm.events import (
     ActionExecuted,
     ActionExecutionRejected,
@@ -51,7 +51,7 @@ from chatbot_dm.interpreter import (
     NaturalLanguageInterpreter,
     RegexInterpreter,
 )
-from rasa.core.nlg import NaturalLanguageGenerator
+from chatbot_dm.nlg import NaturalLanguageGenerator
 from chatbot_dm.policies.ensemble import PolicyEnsemble
 from chatbot_dm.tracker_store import TrackerStore
 from chatbot_dm.trackers import DialogueStateTracker, EventVerbosity
@@ -184,7 +184,10 @@ class MessageProcessor(object):
         """Predicts the next action the bot should take after seeing x.
 
         This should be overwritten by more advanced policies to use
-        ML to predict the action. Returns the index of the next action."""
+        ML to predict the action. Returns the index of the next action.
+        1、预测下一个action
+        2、取出三个action，并根据prob排序
+        """
 
         action_confidences, policy = self._get_next_action_probabilities(tracker)
 

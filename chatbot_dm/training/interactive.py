@@ -20,23 +20,23 @@ import rasa.cli.utils
 from questionary import Choice, Form, Question
 
 from rasa.cli import utils as cliutils
-from rasa.core import constants, run, train, utils
-from rasa.core.actions.action import (
+from chatbot_dm import constants, run, train, utils
+from chatbot_dm.actions.action import (
     ACTION_LISTEN_NAME,
     default_action_names,
     UTTER_PREFIX,
 )
-from rasa.core.channels.channel import UserMessage
-from rasa.core.channels.channel import button_to_string, element_to_string
-from rasa.core.constants import (
+from chatbot_dm.channels.channel import UserMessage
+from chatbot_dm.channels.channel import button_to_string, element_to_string
+from chatbot_dm.constants import (
     DEFAULT_SERVER_FORMAT,
     DEFAULT_SERVER_PORT,
     DEFAULT_SERVER_URL,
     REQUESTED_SLOT,
 )
-from rasa.core.domain import Domain
-import rasa.core.events
-from rasa.core.events import (
+from chatbot_dm.domain import Domain
+import chatbot_dm.events
+from chatbot_dm.events import (
     ActionExecuted,
     ActionReverted,
     BotUttered,
@@ -45,15 +45,15 @@ from rasa.core.events import (
     UserUttered,
     UserUtteranceReverted,
 )
-from rasa.core.interpreter import INTENT_MESSAGE_PREFIX, NaturalLanguageInterpreter
-from rasa.core.trackers import EventVerbosity, DialogueStateTracker
-from rasa.core.training import visualization
-from rasa.core.training.structures import Story
-from rasa.core.training.visualization import (
+from chatbot_dm.interpreter import INTENT_MESSAGE_PREFIX, NaturalLanguageInterpreter
+from chatbot_dm.trackers import EventVerbosity, DialogueStateTracker
+from chatbot_dm.training import visualization
+from chatbot_dm.training.structures import Story
+from chatbot_dm.training.visualization import (
     VISUALIZATION_TEMPLATE_PATH,
     visualize_neighborhood,
 )
-from rasa.core.utils import AvailableEndpoints
+from chatbot_dm.utils import AvailableEndpoints
 from rasa.utils.common import update_sanic_log_level
 from rasa.utils.endpoints import EndpointConfig
 
@@ -784,7 +784,7 @@ async def _write_stories_to_file(
 
     with open(export_story_path, append_write, encoding="utf-8") as f:
         for conversation in sub_conversations:
-            parsed_events = rasa.core.events.deserialise_events(conversation)
+            parsed_events = chatbot_dm.events.deserialise_events(conversation)
             s = Story.from_events(parsed_events)
             f.write("\n" + s.as_story_string(flat=True))
 
@@ -1269,7 +1269,7 @@ async def _fetch_events(
             events = tracker.get("events", [])
 
             for conversation in _split_conversation_at_restarts(events):
-                parsed_events = rasa.core.events.deserialise_events(conversation)
+                parsed_events = chatbot_dm.events.deserialise_events(conversation)
                 event_sequences.append(parsed_events)
         else:
             event_sequences.append(sender_id)
@@ -1336,7 +1336,7 @@ async def record_messages(
 ):
     """Read messages from the command line and print bot responses."""
 
-    from rasa.core import training
+    from chatbot_dm import training
 
     try:
         _print_help(skip_visualization)
@@ -1345,7 +1345,7 @@ async def record_messages(
             domain = await retrieve_domain(endpoint)
         except ClientError:
             logger.exception(
-                "Failed to connect to Rasa Core server at '{}'. "
+                "Failed to connect to chatbot_dm server at '{}'. "
                 "Is the server running?".format(endpoint.url)
             )
             return

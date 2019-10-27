@@ -9,12 +9,12 @@ import warnings
 from typing import Optional, List, Text, Any, Dict, AnyStr, TYPE_CHECKING
 
 from rasa.constants import DOCS_BASE_URL
-from rasa.core import utils
-from rasa.core.constants import INTENT_MESSAGE_PREFIX
-from rasa.core.events import ActionExecuted, UserUttered, Event, SlotSet
-from rasa.core.exceptions import StoryParseError
-from rasa.core.interpreter import RegexInterpreter
-from rasa.core.training.structures import (
+from chatbot_dm import utils
+from chatbot_dm.constants import INTENT_MESSAGE_PREFIX
+from chatbot_dm.events import ActionExecuted, UserUttered, Event, SlotSet
+from chatbot_dm.exceptions import StoryParseError
+from chatbot_dm.interpreter import RegexInterpreter
+from chatbot_dm.training.structures import (
     Checkpoint,
     STORY_START,
     StoryStep,

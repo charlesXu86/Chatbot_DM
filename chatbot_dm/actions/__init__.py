@@ -1,1 +1,1 @@
-from rasa.core.actions.action import Action
+from chatbot_dm.actions.action import Action

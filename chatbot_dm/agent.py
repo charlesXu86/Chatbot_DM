@@ -27,7 +27,7 @@ import aiohttp
 import chatbot_dm
 import chatbot_dm.utils.io
 from rasa.constants import DEFAULT_DOMAIN_PATH, LEGACY_DOCS_BASE_URL
-from rasa.core import constants, jobs, training
+from chatbot_dm import constants, jobs, training
 from chatbot_dm.channels.channel import (
     InputChannel,
     OutputChannel,
@@ -37,16 +37,16 @@ from chatbot_dm.channels.channel import (
 from chatbot_dm.constants import DEFAULT_REQUEST_TIMEOUT
 from chatbot_dm.domain import Domain, InvalidDomain
 from chatbot_dm.exceptions import AgentNotReady
-from rasa.core.interpreter import NaturalLanguageInterpreter, RegexInterpreter
-from rasa.core.nlg import NaturalLanguageGenerator
-from rasa.core.policies.policy import Policy
-from rasa.core.policies.form_policy import FormPolicy
-from rasa.core.policies.ensemble import PolicyEnsemble, SimplePolicyEnsemble
-from rasa.core.policies.memoization import MemoizationPolicy
-from rasa.core.processor import MessageProcessor
-from rasa.core.tracker_store import InMemoryTrackerStore, TrackerStore
-from rasa.core.trackers import DialogueStateTracker
-from rasa.core.utils import LockCounter
+from chatbot_dm.interpreter import NaturalLanguageInterpreter, RegexInterpreter
+from chatbot_dm.nlg import NaturalLanguageGenerator
+from chatbot_dm.policies.policy import Policy
+from chatbot_dm.policies.form_policy import FormPolicy
+from chatbot_dm.policies.ensemble import PolicyEnsemble, SimplePolicyEnsemble
+from chatbot_dm.policies.memoization import MemoizationPolicy
+from chatbot_dm.processor import MessageProcessor
+from chatbot_dm.tracker_store import InMemoryTrackerStore, TrackerStore
+from chatbot_dm.trackers import DialogueStateTracker
+from chatbot_dm.utils import LockCounter
 from rasa.model import (
     get_model_subdirectories,
     get_latest_model,

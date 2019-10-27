@@ -7,9 +7,9 @@ import random
 from tqdm import tqdm
 from typing import Optional, List, Text, Set, Dict, Tuple
 
-from rasa.core import utils
-from rasa.core.domain import Domain
-from rasa.core.events import (
+from chatbot_dm import utils
+from chatbot_dm.domain import Domain
+from chatbot_dm.events import (
     ActionExecuted,
     UserUttered,
     ActionReverted,
@@ -17,8 +17,8 @@ from rasa.core.events import (
     Restarted,
     Event,
 )
-from rasa.core.trackers import DialogueStateTracker
-from rasa.core.training.structures import (
+from chatbot_dm.trackers import DialogueStateTracker
+from chatbot_dm.training.structures import (
     StoryGraph,
     STORY_START,
     StoryStep,

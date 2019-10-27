@@ -4,7 +4,7 @@ import shutil
 from typing import Any, Callable, Dict, List, Text, Optional, Type
 from types import TracebackType
 
-import rasa.core.utils
+import chatbot_dm.utils
 import rasa.utils.io
 from rasa.constants import (
     GLOBAL_USER_CONFIG_PATH,
@@ -61,7 +61,7 @@ def write_global_config_value(name: Text, value: Any) -> None:
 
         c = read_global_config()
         c[name] = value
-        rasa.core.utils.dump_obj_as_yaml_to_file(GLOBAL_USER_CONFIG_PATH, c)
+        chatbot_dm.utils.dump_obj_as_yaml_to_file(GLOBAL_USER_CONFIG_PATH, c)
     except Exception as e:
         logger.warning(
             "Failed to write global config. Error: {}. Skipping." "".format(e)

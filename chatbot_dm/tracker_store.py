@@ -1,3 +1,18 @@
+# -*- coding: utf-8 -*-
+
+'''
+@Author  :   Xu
+
+@Software:   PyCharm
+
+@File    :   tracker_store.py
+
+@Time    :   2019-09-30 10:04
+
+@Desc    :  会话状态存储
+
+'''
+
 import json
 import logging
 import pickle
@@ -9,11 +24,11 @@ import itertools
 # noinspection PyPep8Naming
 from time import sleep
 
-from rasa.core.actions.action import ACTION_LISTEN_NAME
-from rasa.core.broker import EventChannel
-from rasa.core.domain import Domain
+from chatbot_dm.actions.action import ACTION_LISTEN_NAME
+from chatbot_dm.broker import EventChannel
+from chatbot_dm.domain import Domain
 from chatbot_dm.trackers import ActionExecuted, DialogueStateTracker, EventVerbosity
-from rasa.utils.common import class_from_module_path
+from chatbot_dm.utils.common import class_from_module_path
 
 if typing.TYPE_CHECKING:
     from sqlalchemy.engine.url import URL

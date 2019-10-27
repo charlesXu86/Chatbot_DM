@@ -12,3 +12,15 @@
 @Desc    :
  
 '''
+
+import logging
+
+import chatbot_dm
+
+from chatbot_dm.train import train
+# from chatbot_dm.test import test
+# from chatbot_dm.visualize import visualizec
+
+logging.getLogger(__name__).addHandler(logging.NullHandler())
+
+__version__ = chatbot_dm.__version__

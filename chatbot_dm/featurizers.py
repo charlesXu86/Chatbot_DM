@@ -1,3 +1,5 @@
+
+
 import io
 import jsonpickle
 import logging
@@ -374,7 +376,7 @@ class TrackerFeaturizer(object):
             "Featurizer must have the capacity to encode trackers to feature vectors"
         )
 
-    def featurize_trackers(
+    def  featurize_trackers(
         self, trackers: List[DialogueStateTracker], domain: Domain
     ) -> DialogueTrainingData:
         """Create training data"""
