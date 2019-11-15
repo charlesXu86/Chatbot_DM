@@ -27,3 +27,4 @@ from chatbot_dm.policies.sklearn_policy import SklearnPolicy
 from chatbot_dm.policies.form_policy import FormPolicy
 from chatbot_dm.policies.two_stage_fallback import TwoStageFallbackPolicy
 from chatbot_dm.policies.mapping_policy import MappingPolicy
+from chatbot_dm.policies.dqn_policy import DeepQNetPolicy

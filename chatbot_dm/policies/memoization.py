@@ -9,7 +9,7 @@
 
 @Time    :   2019-09-30 10:04
 
-@Desc    :   记忆对话装套
+@Desc    :   记忆对话状态
 
 '''
 
@@ -24,10 +24,10 @@ from typing import Optional, Any, Dict, List, Text
 
 import rasa.utils.io
 
-from rasa.core import utils
-from rasa.core.domain import Domain
-from rasa.core.events import ActionExecuted
-from rasa.core.featurizers import TrackerFeaturizer, MaxHistoryTrackerFeaturizer
+from chatbot_dm import utils
+from chatbot_dm.domain import Domain
+from chatbot_dm.events import ActionExecuted
+from chatbot_dm.featurizers import TrackerFeaturizer, MaxHistoryTrackerFeaturizer
 from chatbot_dm.policies.policy import Policy
 from chatbot_dm.trackers import DialogueStateTracker
 from rasa.utils.common import is_logging_disabled
