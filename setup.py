@@ -12,33 +12,41 @@
 @Desc    :   setup
 
 '''
-from setuptools import find_packages, setup
+from setuptools import find_packages, setup, convert_path
 import pathlib
 
 # Package meta-data.
 NAME = 'chatbot-dm'
-DESCRIPTION = 'nlu of classifiers detection、name entity recognition、classification of chinese text'
+DESCRIPTION = '基于RASA对话引擎的对话管理自定义模块，自定义对话policy，引入强化学习'
 URL = ''
 EMAIL = 'charlesxu86@163.com'
 AUTHOR = 'xu'
 LICENSE = 'MIT'
 
-HERE = pathlib.Path(__file__).parent
-README = (HERE / "README.md").read_text()
+def _version():
+    ns = {}
+    with open(convert_path("chatbot_nlu/version.py"), "r") as fh:
+        exec(fh.read(), ns)
+    return ns['__version__']
+
+__version = _version()
+
+with open("README.rst", "r") as fh:
+    long_description = fh.read()
 
 required = [
             'keras>=2.2.4',
             ]
 
 setup(name=NAME,
-        version='1.0.0',
+        version=__version,
         description=DESCRIPTION,
-        long_description=README,
-        long_description_content_type="text/markdown",
+        long_description=long_description,
+        long_description_content_type='text/x-rst',
         author=AUTHOR,
         author_email=EMAIL,
         url=URL,
-        packages=find_packages(exclude=('tests')),
+        package_data={'chatbot_dm': ['resource/*.json', '*.rst']},
         install_requires=required,
         license=LICENSE,
         classifiers=['License :: OSI Approved :: MIT License',
@@ -49,4 +57,4 @@ setup(name=NAME,
                      'Programming Language :: Python :: 3.8',
                      'Programming Language :: Python :: Implementation :: CPython',
                      'Programming Language :: Python :: Implementation :: PyPy'],)
-print("Welcome to Chatbot DM")
+print("Welcome to Chatbot_DM, and Chatbot_DM version is {}".format(__version))
