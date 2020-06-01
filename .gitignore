@@ -1,0 +1,11 @@
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
+*.swp
+.idea
+
+__pycache__/
+*.py[cod]
+*.pyc
+

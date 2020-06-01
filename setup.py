@@ -25,7 +25,7 @@ LICENSE = 'MIT'
 
 def _version():
     ns = {}
-    with open(convert_path("chatbot_nlu/version.py"), "r") as fh:
+    with open(convert_path("chatbot_dm/version.py"), "r") as fh:
         exec(fh.read(), ns)
     return ns['__version__']
 
