@@ -1,4 +1,17 @@
+# -*- coding: utf-8 -*-
 
+'''
+@Author  :   Xu
+
+@Software:   PyCharm
+
+@File    :   featurizers.py
+
+@Time    :   2019-09-30 10:04
+
+@Desc    :   将对话数据特征化
+
+'''
 
 import io
 import jsonpickle
@@ -10,11 +23,11 @@ from typing import Tuple, List, Optional, Dict, Text, Any
 
 import rasa.utils.io
 from rasa.core import utils
-from rasa.core.actions.action import ACTION_LISTEN_NAME
-from rasa.core.domain import PREV_PREFIX, Domain
-from rasa.core.events import ActionExecuted
-from rasa.core.trackers import DialogueStateTracker
-from rasa.core.training.data import DialogueTrainingData
+from chatbot_dm.actions.action import ACTION_LISTEN_NAME
+from .domain import PREV_PREFIX, Domain
+from chatbot_dm.events import ActionExecuted
+from chatbot_dm.trackers import DialogueStateTracker
+from chatbot_dm.training.data import DialogueTrainingData
 from rasa.utils.common import is_logging_disabled
 
 logger = logging.getLogger(__name__)

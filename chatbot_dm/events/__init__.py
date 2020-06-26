@@ -1,3 +1,19 @@
+# -*- coding: utf-8 -*-
+
+'''
+@Author  :   Xu
+
+@Software:   PyCharm
+
+@File    :   __init__.py
+
+@Time    :   2019-09-30 10:04
+
+@Desc    :  创建对话agent
+
+'''
+
+
 import time
 import typing
 

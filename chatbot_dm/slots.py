@@ -1,3 +1,18 @@
+# -*- coding: utf-8 -*-
+
+'''
+@Author  :   Xu
+
+@Software:   PyCharm
+
+@File    :   slots.py
+
+@Time    :   2019-09-30 10:04
+
+@Desc    :  槽值处理
+
+'''
+
 import logging
 
 from chatbot_dm import utils
