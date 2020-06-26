@@ -210,6 +210,11 @@ class Domain(object):
     def collect_intent_properties(
         intents: List[Union[Text, Dict[Text, Any]]]
     ) -> Dict[Text, Dict[Text, Union[bool, List]]]:
+        '''
+        意图的概率
+        :param intents:
+        :return:
+        '''
         intent_properties = {}
         for intent in intents:
             if isinstance(intent, dict):

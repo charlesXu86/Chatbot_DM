@@ -39,6 +39,9 @@ logger = logging.getLogger(__name__)
 
 
 class TrackerStore(object):
+    '''
+    会话状态存储基类
+    '''
     def __init__(
         self, domain: Optional[Domain], event_broker: Optional[EventChannel] = None
     ) -> None:
@@ -174,6 +177,9 @@ class InMemoryTrackerStore(TrackerStore):
 
 
 class RedisTrackerStore(TrackerStore):
+    '''
+    存储Redis
+    '''
     def keys(self) -> Iterable[Text]:
         return self.red.keys()
 
@@ -213,6 +219,9 @@ class RedisTrackerStore(TrackerStore):
 
 
 class MongoTrackerStore(TrackerStore):
+    '''
+    存储mongodb
+    '''
     def __init__(
         self,
         domain,

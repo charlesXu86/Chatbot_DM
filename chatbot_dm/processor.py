@@ -69,7 +69,7 @@ class MessageProcessor(object):
         interpreter: NaturalLanguageInterpreter,
         policy_ensemble: PolicyEnsemble,
         domain: Domain,
-        tracker_store: TrackerStore,
+        tracker_store: TrackerStore,                                     # 会话状态存储
         generator: NaturalLanguageGenerator,
         action_endpoint: Optional[EndpointConfig] = None,
         max_number_of_predictions: int = MAX_NUMBER_OF_PREDICTIONS,
@@ -537,6 +537,11 @@ class MessageProcessor(object):
             tracker.update(e)
 
     def _get_tracker(self, sender_id: Text) -> Optional[DialogueStateTracker]:
+        '''
+        获取对话历史状态信息
+        :param sender_id: 对话id
+        :return:
+        '''
         sender_id = sender_id or UserMessage.DEFAULT_SENDER_ID
         return self.tracker_store.get_or_create_tracker(sender_id)
 

@@ -231,7 +231,10 @@ class ActionListen(Action):
 class ActionRestart(ActionUtterTemplate):
     """Resets the tracker to its initial state.
 
-    Utters the restart template if available."""
+       Utters the restart template if available.
+
+
+    """
 
     def name(self) -> Text:
         return ACTION_RESTART_NAME

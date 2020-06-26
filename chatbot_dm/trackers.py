@@ -158,7 +158,9 @@ class DialogueStateTracker(object):
     def current_state(
         self, event_verbosity: EventVerbosity = EventVerbosity.NONE
     ) -> Dict[Text, Any]:
-        """Return the current tracker state as an object."""
+        """Return the current tracker state as an object.
+        返回当前状态
+        """
 
         if event_verbosity == EventVerbosity.ALL:
             evts = [e.as_dict() for e in self.events]
@@ -231,7 +233,10 @@ class DialogueStateTracker(object):
         return {key: slot.value for key, slot in self.slots.items()}
 
     def get_slot(self, key: Text) -> Optional[Any]:
-        """Retrieves the value of a slot."""
+        """
+          Retrieves the value of a slot.
+          检索槽值
+        """
 
         if key in self.slots:
             return self.slots[key].value
